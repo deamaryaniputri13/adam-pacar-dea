@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasil Confess</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #ffcae6;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .box {
+            width: 90%;
+            max-width: 480px;
+            background: white;
+            padding: 25px;
+            margin: 40px auto;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            color: #ff2e92;
+        }
+
+        p {
+            font-size: 20px;
+            color: #444;
+            white-space: pre-wrap;
+        }
+
+        /* Tombol Musik */
+        #musicBtn {
+            margin-top: 15px;
+            padding: 10px 18px;
+            background: #ff4fa7;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #musicBtn:hover {
+            background: #ff2e92;
+        }
+
+        /* Hati animasi */
+        .heart {
+            position: fixed;
+            bottom: -10px;
+            font-size: 25px;
+            animation: floatUp 4s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-800px) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <h2>💗 haloww sayang ini dapet bikin aku loh lucu tidak masih sederhana si hehe maaf ya i love youuu sayang kuuuuu muah 💗</h2>
+        <p id="output"></p>
+
+        <!-- TOMBOL MUSIK -->
+        <button id="musicBtn" onclick="toggleMusic()">Pause Musik</button>
+    </div>
+
+    <!-- MUSIK -->
+    <audio id="bgm" autoplay loop>
+        <source src="WhatsApp Audio 2025-12-02 at 22.12.56_1f1a6716.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Ambil pesan dari URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const pesan = urlParams.get("pesan");
+        document.getElementById("output").innerText = pesan;
+
+        // Animasi hati
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.innerHTML = "💗";
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 300);
+
+        // Musik play/pause
+        let music = document.getElementById("bgm");
+        let btn = document.getElementById("musicBtn");
+
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                btn.innerText = "Pause Musik";
+            } else {
+                music.pause();
+                btn.innerText = "Putar Musik";
+            }
+        }
+    </script>
+
+</body>
+</html>
